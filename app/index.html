@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palm Heat — Cover Studio</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- Palm Heat Cover Studio: the editor shell. The canvas in .stage is
+     where the cover is drawn; everything in .controls edits the state
+     that main.js holds. -->
+<header class="topbar">
+  <div class="brand"><span class="logo">PH</span>
+    <div><h1>PALM HEAT · COVER STUDIO</h1>
+    <p>Your photos, drawn as poster cover art — offline, nothing uploads.</p></div>
+  </div>
+  <div class="top-actions">
+    <button type="button" id="undo" disabled>↩ Undo</button>
+    <button type="button" id="redo" disabled>↪ Redo</button>
+    <button type="button" id="export-all" class="primary">Export all 3 sizes</button>
+  </div>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <div class="group">
+      <h2>1 · Photos</h2>
+      <label class="file-btn">+ Add your photos
+        <input type="file" id="photo" accept="image/*" multiple hidden>
+      </label>
+      <div id="dropzone">…or drop photos here — they never leave this machine</div>
+      <div id="photo-strip" class="strip" aria-label="Photos — click to put into the selected panel"></div>
+      <label class="check"><input type="checkbox" id="one-photo"> One photo, all panels</label>
+    </div>
+    <div class="group">
+      <h2>2 · Layout &amp; grade</h2>
+      <div id="layout-pick" class="pick">
+        <button type="button" data-layout="chaos" class="active">Chaos Key-Art</button>
+        <button type="button" data-layout="hero-vice">Hero Vice</button>
+        <button type="button" data-layout="vice-grid">Vice Grid</button>
+        <button type="button" data-layout="hero-three">Hero + Three</button>
+        <button type="button" data-layout="tilted">Tilted</button>
+        <button type="button" data-layout="full-bleed">Full Bleed</button>
+      </div>
+      <div id="grade-pick" class="pick">
+        <button type="button" data-grade="ink">Poster Ink</button>
+        <button type="button" data-grade="sunset" class="active">Sunset</button>
+        <button type="button" data-grade="neon">Neon Night</button>
+        <button type="button" data-grade="golden">Golden Hour</button>
+      </div>
+    </div>
+    <div class="group">
+      <h2>3 · Words</h2>
+      <label>Title <input type="text" id="title" maxlength="24" value="PALM HEAT"></label>
+      <label>Subtitle (script) <input type="text" id="subtitle" maxlength="40" value="where the sun never sets"></label>
+      <label>Place <input type="text" id="place" maxlength="20" value="CORAL BAY"></label>
+      <label>Tagline <input type="text" id="tagline" maxlength="48" value="EVERY STREET HAS A STORY"></label>
+      <label class="check"><input type="checkbox" id="captions" checked> Panel captions</label>
+      <div class="heat-row"><span>HEAT</span>
+        <div id="heat-pick" class="stars">
+          <button type="button" aria-label="Heat 1">★</button>
+          <button type="button" aria-label="Heat 2">★</button>
+          <button type="button" aria-label="Heat 3">★</button>
+          <button type="button" aria-label="Heat 4">★</button>
+          <button type="button" aria-label="Heat 5" class="active">★</button>
+        </div>
+      </div>
+    </div>
+    <div class="group">
+      <h2>4 · Selected panel</h2>
+      <p class="hint">Click a panel on the cover, drag it to pan, scroll to zoom.</p>
+      <label>Zoom <input type="range" id="zoom" min="1" max="3" step="0.05" value="1.15"></label>
+      <button type="button" id="cycle-photo">Next photo in this panel</button>
+    </div>
+    <div class="group">
+      <h2>5 · Export</h2>
+      <div id="size-pick" class="pick">
+        <button type="button" data-size="landscape" class="active">1920 × 1080</button>
+        <button type="button" data-size="portrait">1080 × 1350</button>
+        <button type="button" data-size="square">1080 × 1080</button>
+      </div>
+      <button type="button" id="export" class="primary big">Export PNG</button>
+      <p id="status" role="status"></p>
+    </div>
+  </section>
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="1920" height="1080" aria-label="The cover"></canvas>
+    <p class="stage-note">Live preview — what you see is the PNG you export. Original fan-made art: no Rockstar logos, artwork or fonts.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
